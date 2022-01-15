@@ -10,6 +10,7 @@ import (
 
 // testValidity is function to check the validity of given string accoridng to the given rule
 // check will be done by regular expression
+// estimate time: 15min, used time: 20min
 func testValidity(value string) bool {
 	sArr := strings.Split(value, "-")
 	var r *regexp.Regexp
@@ -27,6 +28,7 @@ func testValidity(value string) bool {
 }
 
 // averageNumber is function to get average value of all numbers in the given string
+// estimate time: 5min, used time: 3min
 func averageNumber(value string) int64 {
 	if !testValidity(value) {
 		return 0
@@ -45,6 +47,7 @@ func averageNumber(value string) int64 {
 }
 
 // wholeStory is function to get all words in the given string and make a sentence by joining with space
+// estimate time: 5min, used time: 3min
 func wholeStory(value string) string {
 	if !testValidity(value) {
 		return ""
@@ -60,6 +63,7 @@ func wholeStory(value string) string {
 }
 
 // storyStats is function to get the shortest and longest word, average length of all words and average length words in the given string
+// estimate time: 10min, used time: 10min
 func storyStats(value string) (string, string, int, []string) {
 	if !testValidity(value) {
 		return "", "", 0, []string{}
