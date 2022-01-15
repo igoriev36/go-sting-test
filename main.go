@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"math"
+	"math/rand"
 	"regexp"
 	"strconv"
 	"strings"
@@ -43,7 +44,7 @@ func averageNumber(value string) int64 {
 			num++
 		}
 	}
-	return int64(total / num)
+	return int64(math.Round(float64(total / num)))
 }
 
 // wholeStory is function to get all words in the given string and make a sentence by joining with space
@@ -90,6 +91,25 @@ func storyStats(value string) (string, string, int, []string) {
 		}
 	}
 	return shortest, longest, avgRound, avgwords
+}
+
+func generate(value bool) string {
+	tl := rand.Intn(100) + 1
+	charset := "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+	blocks := []string{}
+	for i := 0; i < tl; i++ {
+		blocks = append(blocks, strconv.Itoa(rand.Intn(10000)))
+		word := make([]byte, rand.Intn(100)+1)
+		for j := range word {
+			word[j] = charset[rand.Intn(52)]
+		}
+		if !value {
+			blocks = append(blocks, string(word)+"1")
+		} else {
+			blocks = append(blocks, string(word))
+		}
+	}
+	return strings.Join(blocks, "-")
 }
 
 // main is bootstraping function
